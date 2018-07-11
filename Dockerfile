@@ -3,7 +3,7 @@ FROM alpine:3.6
 RUN apk add --update nginx
 
 RUN addgroup -g 786 appuser && \
-    addgroup appuser appuser
+    adduser -D -u 786 -G appuser appuser
 USER appuser
 
 RUN mkdir -p /run/nginx
