@@ -7,8 +7,9 @@ RUN addgroup -g 786 appuser && \
 
 RUN mkdir -p /run/nginx
 
-RUN chown appuser /run/nginx
-
+RUN chown appuser /run/nginx && \
+    chown appuser /var/lib/nginx && \
+    chown appuser /var/tmp/nginx && \
 USER appuser
 
 COPY nginx.conf /etc/nginx/
