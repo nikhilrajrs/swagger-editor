@@ -1,8 +1,11 @@
 FROM alpine:3.4
 
-MAINTAINER fehguy
-
 RUN apk add --update nginx
+
+RUN groupadd -g 999 appuser && \
+    useradd -r -u 999 -g appuser appuser
+USER appuser
+
 RUN mkdir -p /run/nginx
 
 COPY nginx.conf /etc/nginx/
