@@ -2,8 +2,11 @@ FROM alpine:3.6
 
 RUN apk add --update nginx
 
-RUN groupadd -g 999 appuser && \
-    useradd -r -u 999 -g appuser appuser
+ARG PUID
+ARG PGID
+
+RUN addgroup -g ${PGID} appuser && \
+    adduser -D -u ${PUID} -G appuser appuser
 USER appuser
 
 RUN mkdir -p /run/nginx
